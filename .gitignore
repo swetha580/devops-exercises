@@ -1,0 +1,14 @@
+# Disk images and large test binaries
+*.img
+*.bin
+*.dat
+*.iso
+
+# Logs and local downloads
+*.log
+downloaded_docs/
+serial.log
+
+# Temporary files
+test_cert.pdf
+temp_move.txt

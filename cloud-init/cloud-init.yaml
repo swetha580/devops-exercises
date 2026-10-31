@@ -1,0 +1,64 @@
+#cloud-config
+
+package_update: false
+package_upgrade: false
+
+packages:
+  - docker.io
+  - git
+  - curl
+  - ffmpeg
+
+users:
+  - default
+  - name: testpress
+    gecos: Testpress Service User
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: [docker, sudo]
+    plain_text_passwd: 'testpress'
+    lock_passwd: false
+
+ssh_pwauth: true
+
+write_files:
+  - path: /opt/testpress/app.env
+    owner: testpress:testpress
+    permissions: '0640'
+    content: |
+      APP_NAME=Testpress-Demo-HTTP
+      APP_PORT=8080
+      APP_ENV=production
+
+  - path: /opt/testpress/html/index.html
+    owner: testpress:testpress
+    permissions: '0644'
+    content: |
+      Hello from Testpress!
+
+  - path: /etc/systemd/system/testpress-app.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Testpress Dockerized HTTP Application
+      After=docker.service
+      Requires=docker.service
+
+      [Service]
+      TimeoutStartSec=0
+      Restart=always
+      RestartSec=5s
+      ExecStartPre=-/usr/bin/docker stop testpress-http
+      ExecStartPre=-/usr/bin/docker rm testpress-http
+      ExecStart=/usr/bin/docker run --name testpress-http --rm -p 8080:80 -v /opt/testpress/html:/usr/share/nginx/html:ro --env-file /opt/testpress/app.env --health-cmd="curl -f http://localhost/ || exit 1" --health-interval=10s --health-retries=3 nginx:alpine
+      ExecStop=/usr/bin/docker stop testpress-http
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - chown -R testpress:testpress /opt/testpress
+  - systemctl daemon-reload
+  - systemctl enable testpress-app.service
+  - systemctl restart testpress-app.service
