@@ -5,7 +5,7 @@
 *.iso
 
 # Logs and local downloads
-*.log
+serial.log
 downloaded_docs/
 serial.log
 

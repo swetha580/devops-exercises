@@ -1,0 +1,33 @@
+2026-10-31 14:58:18 [INFO] ==========================================================
+2026-10-31 14:58:18 [INFO] Starting COPY operation from [source_dir/docs] to [LOCALMINIO:testpress-bucket/script-test/]
+2026-10-31 14:58:18 [INFO] Logging to: transfer.log
+Transferred:   	        58 / 58 Bytes, 100%, 1.828 kBytes/s, ETA 0s
+Transferred:            2 / 2, 100%
+Elapsed time:         0.4s
+2026-10-31 14:58:19 [SUCCESS] COPY completed successfully without errors.
+2026-10-31 14:58:19 [INFO] ==========================================================
+2026-10-31 14:58:19 [INFO] Starting SYNC operation from [source_dir/docs] to [LOCALMINIO:testpress-bucket/script-test/]
+2026-10-31 14:58:19 [INFO] Logging to: transfer.log
+2026-10-31 14:58:19 [WARN] Sync requested. Performing safety --dry-run check for deletions...
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Checks:                 2 / 2, 100%
+Elapsed time:         0.5s
+2026-10-31 14:58:20 [SUCCESS] SYNC completed successfully without errors.
+2026-10-31 15:34:36 [INFO] ==========================================================
+2026-10-31 15:34:36 [INFO] Starting COPY operation from [source_dir/docs] to [LOCALMINIO:testpress-bucket/docs/]
+2026-10-31 15:34:36 [INFO] Logging to: transfer.log
+Transferred:   	        29 / 29 Bytes, 100%, 1.052 kBytes/s, ETA 0s
+Checks:                 1 / 1, 100%
+Transferred:            1 / 1, 100%
+Elapsed time:         0.7s
+2026-10-31 15:34:37 [SUCCESS] COPY completed successfully without errors.
+2026-10-31 15:34:37 [INFO] ==========================================================
+2026-10-31 15:34:37 [INFO] Starting SYNC operation from [source_dir/docs] to [LOCALMINIO:testpress-bucket/docs/]
+2026-10-31 15:34:37 [INFO] Logging to: transfer.log
+2026-10-31 15:34:37 [WARN] Sync requested. Performing safety --dry-run check for deletions...
+2026/10/31 15:34:37 NOTICE: legacy_certificate.pdf: Skipped delete as --dry-run is set
+Transferred:   	         0 / 0 Bytes, -, 0 Bytes/s, ETA -
+Checks:                 3 / 3, 100%
+Deleted:                1
+Elapsed time:         0.6s
+2026-10-31 15:34:38 [SUCCESS] SYNC completed successfully without errors.
