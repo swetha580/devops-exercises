@@ -12,3 +12,5 @@ serial.log
 # Temporary files
 test_cert.pdf
 temp_move.txt
+systemd/testpress-worker.env
+systemd/app.log

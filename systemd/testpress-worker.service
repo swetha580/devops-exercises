@@ -1,0 +1,33 @@
+[Unit]
+Description=Testpress Background Worker Service
+After=network.target
+
+# Restart rate limiting: max 3 crashes within 30 seconds
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=swetha
+WorkingDirectory=/home/swetha/workspace/devops-exercises/systemd
+EnvironmentFile=/home/swetha/workspace/devops-exercises/systemd/testpress-worker.env
+ExecStart=/usr/bin/python3 /home/swetha/workspace/devops-exercises/systemd/app.py
+
+# Auto-restart policy
+Restart=on-failure
+RestartSec=3s
+
+# Graceful termination timeout
+TimeoutStopSec=10s
+
+# Resource limits (Cgroups)
+MemoryMax=50M
+MemorySwapMax=0
+CPUQuota=50%
+
+# Logging to journald
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
